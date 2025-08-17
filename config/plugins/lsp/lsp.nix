@@ -44,7 +44,7 @@
         jsonls = {
           enable = true;
         };
-        clang_d = {
+        clangd = {
           enable = true;
         };
         helm_ls = {
