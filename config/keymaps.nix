@@ -341,7 +341,7 @@
     }
     {
       mode = "t";
-      key = "<esc><esc>";
+      key = "<esc>";
       action = "<c-\\><c-n>";
       options = {
         desc = "Enter Normal Mode";
@@ -485,6 +485,46 @@
       mode = "n";
       key = "<leader><tab>[";
       action = "<cmd>tabprevious<cr>";
+      options = {
+        desc = "Previous Tab";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>1";
+      action = "1gt";
+      options = {
+        desc = "Previous Tab";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>2";
+      action = "2gt";
+      options = {
+        desc = "Previous Tab";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>3";
+      action = "3gt";
+      options = {
+        desc = "Previous Tab";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>4gt";
+      action = "4gt";
+      options = {
+        desc = "Previous Tab";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>5";
+      action = "5gt";
       options = {
         desc = "Previous Tab";
       };

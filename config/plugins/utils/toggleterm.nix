@@ -32,7 +32,7 @@ _: {
     }
     {
       mode = "n";
-      key = "<leader>tf";
+      key = "<leader>\\";
       action = "<cmd>ToggleTerm direction=float<cr>";
       options = {
         desc = "Toggle Floating Terminal Window";
