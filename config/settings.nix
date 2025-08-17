@@ -25,8 +25,8 @@
       clipboard = "unnamedplus";
 
       # Number of spaces that represent a <TAB>
-      tabstop = 2;
-      softtabstop = 2;
+      tabstop = 4;
+      softtabstop = 4;
 
       # Show tabline always
       showtabline = 2;
