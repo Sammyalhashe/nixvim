@@ -55,16 +55,49 @@
         };
 
         mapping = {
-          "<C-Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-          "<C-j>" = "cmp.mapping.select_next_item()";
-          "<C-k>" = "cmp.mapping.select_prev_item()";
+          "<Tab>".__raw = ''
+            cmp.mapping(function(fallback)
+              local luasnip = require("luasnip")
+              if luasnip.locally_jumpable(1) then
+                luasnip.jump(1)
+              else
+                fallback()
+              end
+            end, { "i", "s" })
+          '';
+          "<S-Tab>".__raw = ''
+            cmp.mapping(function(fallback)
+              local luasnip = require("luasnip")
+              if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+              else
+                fallback()
+              end
+            end, { "i", "s" })
+          '';
           "<C-e>" = "cmp.mapping.abort()";
           "<C-b>" = "cmp.mapping.scroll_docs(-4)";
           "<C-f>" = "cmp.mapping.scroll_docs(4)";
           "<C-Space>" = "cmp.mapping.complete()";
-          "CR" = "cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert })";
+          "<C-CR>" = "cmp.mapping.confirm({ select = true })";
           "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
+          "<Up>" = # lua
+            "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          "<Down>" = # lua
+            "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
         };
+
+        # mapping = {
+        #   "<C-Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+        #   "<C-j>" = "cmp.mapping.select_next_item()";
+        #   "<C-k>" = "cmp.mapping.select_prev_item()";
+        #   "<C-e>" = "cmp.mapping.abort()";
+        #   "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+        #   "<C-f>" = "cmp.mapping.scroll_docs(4)";
+        #   "<C-Space>" = "cmp.mapping.complete()";
+        #   "CR" = "cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert })";
+        #   "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
+        # };
       };
     };
     cmp-nvim-lsp = {
