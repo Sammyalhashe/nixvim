@@ -55,36 +55,36 @@
         };
 
         mapping = {
+          "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-f>" = "cmp.mapping.scroll_docs(4)";
+          "<C-e>" = "cmp.mapping.close()";
+          "<CR>" = "cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true }";
           "<Tab>".__raw = ''
+            -- If you want tab completion :'(
+            --  First you have to just promise to read `:help ins-completion`.
             cmp.mapping(function(fallback)
-              local luasnip = require("luasnip")
-              if luasnip.locally_jumpable(1) then
-                luasnip.jump(1)
-              else
-                fallback()
-              end
+                if cmp.visible() then
+                    cmp.select_next_item()
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
             end, { "i", "s" })
           '';
           "<S-Tab>".__raw = ''
             cmp.mapping(function(fallback)
-              local luasnip = require("luasnip")
-              if luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-              else
-                fallback()
-              end
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
             end, { "i", "s" })
           '';
-          "<C-e>" = "cmp.mapping.abort()";
-          "<C-b>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-f>" = "cmp.mapping.scroll_docs(4)";
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-CR>" = "cmp.mapping.confirm({ select = true })";
-          "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
-          "<Up>" = # lua
-            "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-          "<Down>" = # lua
-            "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
         };
 
         # mapping = {
