@@ -269,7 +269,7 @@
     }
     {
       mode = "n";
-      key = "<leader>cd";
+      key = "<leader>ee";
       action = "vim.diagnostic.open_float";
       options = {
         desc = "Line Diagnostics";
@@ -527,6 +527,46 @@
       action = "5gt";
       options = {
         desc = "Previous Tab";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>pf";
+      action = "<cmd>Pick git_files<cr>";
+      options = {
+        desc = "Mini.pick git_files";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ff";
+      action = "<cmd>Pick files<cr>";
+      options = {
+        desc = "Mini.pick files";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ag";
+      action = "<cmd>Pick grep_live<cr>";
+      options = {
+        desc = "Mini.pick grep_live";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>b";
+      action = "<cmd>Pick buffers<cr>";
+      options = {
+        desc = "Mini.pick buffers";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>mr";
+      action = "<cmd>Pick resume<cr>";
+      options = {
+        desc = "Mini.pick resume";
       };
     }
   ];

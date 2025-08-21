@@ -1,6 +1,6 @@
 {
   plugins.telescope = {
-    enable = true;
+    enable = false;
     extensions = {
       file-browser = {
         enable = true;
@@ -17,6 +17,10 @@
           };
         };
         sorting_strategy = "ascending";
+        mappings = {
+          "<C-j>" = "move_selection_next";
+          #   "<C-k>" = "move_selection_previous";
+        };
       };
     };
     keymaps = {
