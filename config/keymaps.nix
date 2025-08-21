@@ -532,7 +532,7 @@
     {
       mode = "n";
       key = "<leader>pf";
-      action = "<cmd>Pick git_files<cr>";
+      action = "<cmd>Pick files tool='git'<cr>";
       options = {
         desc = "Mini.pick git_files";
       };
