@@ -5,6 +5,17 @@
     {
       mode = [
         "n"
+      ];
+      key = "!";
+      action = ":!";
+      options = {
+        expr = true;
+        silent = true;
+      };
+    }
+    {
+      mode = [
+        "n"
         "x"
       ];
       key = "j";

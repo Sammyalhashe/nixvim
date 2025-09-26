@@ -10,11 +10,21 @@
         vim.fn.sign_define("diagnosticsigninfo", { text = " ", texthl = "diagnosticinfo", linehl = "", numhl = "" })
       '';
 
+    extraConfigLua = ''
+      api.nvim_create_user_command("TT", "tabnew | term", {})
+      api.nvim_create_user_command("VT", "vsplit | term", {})
+      api.nvim_create_user_command("ST", "split | term", {})
+    '';
+
     clipboard = {
       providers.wl-copy.enable = pkgs.stdenv.isLinux;
     };
 
     opts = {
+      # ignore case
+      ignorecase = true;
+      smartcase = true;
+
       # Show line numbers
       number = true;
 
@@ -34,11 +44,14 @@
       # Use spaces instead of tabs
       expandtab = true;
 
+      # I used this in my old config so why not
+      smarttab = true;
+
       # Enable smart indentation
       smartindent = true;
 
       # Number of spaces to use for each step of (auto)indent
-      shiftwidth = 2;
+      shiftwidth = 4;
 
       # Enable break indent
       breakindent = true;
