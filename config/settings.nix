@@ -11,9 +11,9 @@
       '';
 
     extraConfigLua = ''
-      api.nvim_create_user_command("TT", "tabnew | term", {})
-      api.nvim_create_user_command("VT", "vsplit | term", {})
-      api.nvim_create_user_command("ST", "split | term", {})
+      vim.api.nvim_create_user_command("TT", "tabnew | term", {})
+      vim.api.nvim_create_user_command("VT", "vsplit | term", {})
+      vim.api.nvim_create_user_command("ST", "split | term", {})
     '';
 
     clipboard = {
