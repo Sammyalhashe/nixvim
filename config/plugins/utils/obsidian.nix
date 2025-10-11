@@ -1,6 +1,6 @@
 {
   plugins.obsidian = {
-    enable = false;
+    enable = true;
     settings = {
       workspaces = [
         {
