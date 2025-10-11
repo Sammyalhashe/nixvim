@@ -1,4 +1,13 @@
-_: {
+{ pkgs, lib, ... }:
+{
+  options = {
+    wsl = lib.mkOption {
+      type = lib.types.bool;
+      description = "This instance of nixvim runs in wsl";
+      default = false;
+    };
+
+  };
   imports = [
     # General Configuration
     ./settings.nix
