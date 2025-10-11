@@ -5,7 +5,7 @@
       workspaces = [
         {
           name = "SecondBrain";
-          path = "~/projects/personal/SecondBrain";
+          path = "/mnt/c/Users/sammy/Syncthing/My notes";
         }
       ];
       templates = {
