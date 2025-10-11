@@ -8,6 +8,7 @@
           path = "/mnt/c/Users/sammy/Syncthing/My notes";
         }
       ];
+      opts.legacy_commands = false;
       templates = {
         subdir = "templates";
         dateFormat = "%Y-%m-%d";
