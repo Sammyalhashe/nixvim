@@ -69,6 +69,9 @@
 
           packages = {
             default = nvim;
+          };
+
+          nixvimFunctions = {
             inherit (nixvim') makeNixvimWithModule;
           };
 
