@@ -28,6 +28,10 @@
         "x86_64-darwin"
       ];
 
+      flake = {
+        nixvimModules.wslOption = import ./modules/wsl-option.nix;
+      };
+
       perSystem =
         {
           system,
