@@ -69,6 +69,7 @@
 
           packages = {
             default = nvim;
+            inherit (nixvim') makeNixvimWithModule;
           };
 
           devShells = {
