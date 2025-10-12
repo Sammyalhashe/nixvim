@@ -29,7 +29,7 @@
       ];
 
       flake = {
-        nixvimModules.wslOption = import ./modules/wsl-option.nix;
+        nixvimModules.wslOption = import ./config/modules/wsl-option.nix;
       };
 
       perSystem =
