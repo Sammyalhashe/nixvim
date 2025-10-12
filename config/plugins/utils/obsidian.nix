@@ -1,11 +1,21 @@
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  notesPath =
+    if config.nixvim.wsl then "/mnt/c/Users/sammy/Syncthing/My notes" else "~/todo_somewhere";
+in
+{
   plugins.obsidian = {
     enable = true;
     settings = {
       workspaces = [
         {
           name = "SecondBrain";
-          path = "/mnt/c/Users/sammy/Syncthing/My notes";
+          path = notesPath;
         }
       ];
       opts.legacy_commands = false;

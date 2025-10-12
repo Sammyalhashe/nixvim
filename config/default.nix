@@ -6,6 +6,8 @@
 }:
 {
   imports = [
+    # import wsl option config
+    ./modules/wsl-option.nix
     # General Configuration
     ./settings.nix
     ./keymaps.nix
