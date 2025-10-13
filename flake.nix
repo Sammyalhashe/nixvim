@@ -31,17 +31,11 @@
       flake = {
         nixvimModules.wslOption = import ./config/modules/wsl-option.nix;
         # ✅ Expose nixvimFunctions per system using self'
-        # nixvimFunctions = {
-        #   x86_64-linux = inputs.nixvim.legacyPackages.x86_64-linux.makeNixvimWithModule;
-        #   aarch64-linux = inputs.nixvim.legacyPackages.aarch64-linux.makeNixvimWithModule;
-        #   x86_64-darwin = inputs.nixvim.legacyPackages.x86_64-darwin.makeNixvimWithModule;
-        #   aarch64-darwin = inputs.nixvim.legacyPackages.aarch64-darwin.makeNixvimWithModule;
-        # };
-        # ✅ Dynamically expose makeNixvimWithModule per system
         nixvimFunctions = {
-          forAllSystems = self': {
-            inherit (self'.packages.default) makeNixvimWithModule;
-          };
+          x86_64-linux = inputs.nixvim.legacyPackages.x86_64-linux.makeNixvimWithModule;
+          aarch64-linux = inputs.nixvim.legacyPackages.aarch64-linux.makeNixvimWithModule;
+          x86_64-darwin = inputs.nixvim.legacyPackages.x86_64-darwin.makeNixvimWithModule;
+          aarch64-darwin = inputs.nixvim.legacyPackages.aarch64-darwin.makeNixvimWithModule;
         };
       };
 
