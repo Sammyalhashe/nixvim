@@ -56,9 +56,20 @@
             # You can use `extraSpecialArgs` to pass additional arguments to your module files
             extraSpecialArgs = {
               # inherit (inputs) foo;
+              wsl = false;
+            };
+          };
+          wslModule = {
+            inherit pkgs;
+            module = import ./config/wsl.nix; # import the module directly
+            # You can use `extraSpecialArgs` to pass additional arguments to your module files
+            extraSpecialArgs = {
+              # inherit (inputs) foo;
+              wsl = true;
             };
           };
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
+          wsl = nixvim'.makeNixvimWithModule wslModule;
         in
         {
           checks = {
@@ -76,6 +87,7 @@
 
           packages = {
             default = nvim;
+            inherit wsl;
           };
 
           devShells = {
