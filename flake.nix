@@ -29,13 +29,6 @@
 
       flake = {
         nixvimModules.wslOption = import ./config/modules/wsl-option.nix;
-        # ✅ Expose nixvimFunctions per system using self'
-        nixvimFunctions = {
-          x86_64-linux = inputs.nixvim.legacyPackages.x86_64-linux.makeNixvimWithModule;
-          aarch64-linux = inputs.nixvim.legacyPackages.aarch64-linux.makeNixvimWithModule;
-          x86_64-darwin = inputs.nixvim.legacyPackages.x86_64-darwin.makeNixvimWithModule;
-          aarch64-darwin = inputs.nixvim.legacyPackages.aarch64-darwin.makeNixvimWithModule;
-        };
       };
 
       perSystem =
@@ -58,17 +51,7 @@
               wsl = false;
             };
           };
-          wslModule = {
-            inherit pkgs;
-            module = import ./config/wsl.nix; # import the module directly
-            # You can use `extraSpecialArgs` to pass additional arguments to your module files
-            extraSpecialArgs = {
-              # inherit (inputs) foo;
-              wsl = true;
-            };
-          };
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
-          wsl = nixvim'.makeNixvimWithModule wslModule;
         in
         {
           checks = {
@@ -86,7 +69,6 @@
 
           packages = {
             default = nvim;
-            inherit wsl;
           };
 
           devShells = {
