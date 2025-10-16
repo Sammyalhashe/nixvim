@@ -14,7 +14,6 @@
 
   outputs =
     {
-      nixpkgs,
       nixvim,
       flake-parts,
       pre-commit-hooks,
