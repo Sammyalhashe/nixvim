@@ -6,7 +6,7 @@
 }:
 let
   notesPath =
-    if !config.nixvim.wsl then "/mnt/c/Users/sammy/Syncthing/My notes" else "~/todo_somewhere";
+    if config.nixvim.wsl then "/mnt/c/Users/sammy/Syncthing/My notes" else "~/todo_somewhere";
 in
 {
   plugins.obsidian = {
