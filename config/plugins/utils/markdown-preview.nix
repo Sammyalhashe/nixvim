@@ -4,7 +4,7 @@ _: {
       enable = true;
       settings = {
         browser = "firefox";
-        echo_preview_url = 1;
+        echo_preview_url = 0;
         port = "6969";
         preview_options = {
           disable_filename = 1;
