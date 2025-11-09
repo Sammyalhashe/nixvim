@@ -128,14 +128,6 @@
             action = "open_float";
             desc = "Line Diagnostics";
           };
-          "[e" = {
-            action = "goto_next({severity = 'ERROR' })";
-            desc = "Next Diagnostic";
-          };
-          "]e" = {
-            action = "goto_prev({severity = 'ERROR' })";
-            desc = "Previous Diagnostic";
-          };
           "[d" = {
             action = "goto_next";
             desc = "Next Diagnostic";
