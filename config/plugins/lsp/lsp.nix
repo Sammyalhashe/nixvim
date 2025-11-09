@@ -83,6 +83,12 @@
 
       keymaps = {
         silent = true;
+        extra = {
+          "]h" = {
+            action = ":ClangdSwitchSourceHeader<cr>";
+            desc = "ClangSwitchSourceHeader";
+          };
+        };
         lspBuf = {
           gd = {
             action = "definition";
