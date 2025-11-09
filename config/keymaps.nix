@@ -280,30 +280,6 @@
     }
     {
       mode = "n";
-      key = "<leader>ee";
-      action = "vim.diagnostic.open_float";
-      options = {
-        desc = "Line Diagnostics";
-      };
-    }
-    {
-      mode = "n";
-      key = "]d";
-      action = "diagnostic_goto(true)";
-      options = {
-        desc = "Next Diagnostic";
-      };
-    }
-    {
-      mode = "n";
-      key = "[d";
-      action = "diagnostic_goto(false)";
-      options = {
-        desc = "Prev Diagnostic";
-      };
-    }
-    {
-      mode = "n";
       key = "]e";
       action = "diagnostic_goto(true 'ERROR')";
       options = {
