@@ -86,7 +86,7 @@
         extra = [
           {
             key = "]h";
-            action = ":ClangdSwitchSourceHeader<cr>";
+            action = ":LspClangdSwitchSourceHeader<cr>";
           }
         ];
         lspBuf = {
