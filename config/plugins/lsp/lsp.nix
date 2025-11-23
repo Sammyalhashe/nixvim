@@ -14,6 +14,12 @@
       enable = true;
       inlayHints = true;
       servers = {
+        zls = {
+          enable = true;
+        };
+        cmake = {
+          enable = true;
+        };
         html = {
           enable = true;
         };
