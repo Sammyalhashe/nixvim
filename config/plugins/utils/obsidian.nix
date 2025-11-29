@@ -10,7 +10,7 @@ let
 in
 {
   plugins.obsidian = {
-    enable = true;
+    enable = config.nixvim.obsidian;
     settings = {
       workspaces = [
         {

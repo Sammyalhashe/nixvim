@@ -100,10 +100,10 @@
             action = "definition";
             desc = "Goto Definition";
           };
-          gr = {
-            action = "references";
-            desc = "Goto References";
-          };
+          # gr = {
+          #   # action = "references";
+          #   desc = "Goto References";
+          # };
           gD = {
             action = "declaration";
             desc = "Goto Declaration";
@@ -124,7 +124,7 @@
             action = "workspace_symbol";
             desc = "Workspace Symbol";
           };
-          "<leader>cr" = {
+          "<leader>ar" = {
             action = "rename";
             desc = "Rename";
           };
@@ -151,26 +151,51 @@
   ];
 
   extraConfigLua = ''
-    local _border = "rounded"
+        local _border = "rounded"
 
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-      vim.lsp.handlers.hover, {
-        border = _border
-      }
-    )
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+          vim.lsp.handlers.hover, {
+            border = _border
+          }
+        )
 
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-      vim.lsp.handlers.signature_help, {
-        border = _border
-      }
-    )
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+          vim.lsp.handlers.signature_help, {
+            border = _border
+          }
+        )
 
-    vim.diagnostic.config{
-      float={border=_border}
-    };
+        vim.diagnostic.config{
+          float={border=_border}
+        };
 
-    require('lspconfig.ui.windows').default_options = {
-      border = _border
-    }
+        require('lspconfig.ui.windows').default_options = {
+          border = _border
+        }
+
+    -- Trouble LSP keymaps (replaces lspBuf gr/gI/etc)
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        local buf = args.buf
+        local trouble = require("trouble")
+        
+        vim.keymap.set("n", "<Space>gr", function()
+          trouble.open("lsp_references")
+          trouble.focus()
+        end, { buffer = buf, desc = "LSP References (Trouble)" })
+        
+        -- vim.keymap.set("n", "gI", function()
+        --   trouble.open("lsp_implementations")
+        -- end, { buffer = buf, desc = "LSP Implementations (Trouble)" })
+        --
+        -- vim.keymap.set("n", "gD", function()
+        --   trouble.open("lsp_declarations")
+        -- end, { buffer = buf, desc = "LSP Declarations (Trouble)" })
+        --
+        -- vim.keymap.set("n", "gT", function()
+        --   trouble.open("lsp_type_definitions")
+        -- end, { buffer = buf, desc = "LSP Type Definitions (Trouble)" })
+      end
+    })
   '';
 }

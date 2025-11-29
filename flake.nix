@@ -29,6 +29,7 @@
 
       flake = {
         nixvimModules.wslOption = import ./config/modules/wsl-option.nix;
+        nixvimModules.obsidianOption = import ./config/modules/obsidian-option.nix;
       };
 
       perSystem =

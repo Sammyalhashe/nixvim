@@ -8,6 +8,7 @@
   imports = [
     # import wsl option config
     ./modules/wsl-option.nix
+    ./modules/obsidian-option.nix
     # General Configuration
     ./settings.nix
     ./keymaps.nix
@@ -41,6 +42,7 @@
     ./plugins/ui/bufferline.nix
     ./plugins/ui/lualine.nix
     ./plugins/ui/startup.nix
+    ./plugins/ui/trouble.nix
 
     # LSP and formatting
     ./plugins/lsp/lsp.nix
@@ -58,6 +60,7 @@
     ./plugins/utils/markview.nix
     ./plugins/utils/mini.nix
     ./plugins/utils/obsidian.nix
+    ./plugins/utils/spectre.nix
     ./plugins/utils/telescope.nix
     ./plugins/utils/toggleterm.nix
     ./plugins/utils/web-devicons.nix
