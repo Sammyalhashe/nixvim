@@ -16,6 +16,30 @@
       vim.api.nvim_create_user_command("ST", "split | term", {})
 
       vim.g.disable_autoformat = true;
+
+      -- Theme switching
+      local timer = vim.loop.new_timer()
+      timer:start(0, 2000, vim.schedule_wrap(function()
+          local f = io.open("/etc/current-theme", "r")
+          if f then
+              local content = f:read("*all")
+              f:close()
+              content = content:gsub("%s+", "")
+              if content == "light" then
+                  if vim.o.background ~= "light" then
+                      vim.o.background = "light"
+                  end
+              else
+                  if vim.o.background ~= "dark" then
+                      vim.o.background = "dark"
+                  end
+              end
+          else
+               if vim.o.background ~= "dark" then
+                  vim.o.background = "dark"
+              end
+          end
+      end))
     '';
 
     clipboard = {
