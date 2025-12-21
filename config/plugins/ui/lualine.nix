@@ -74,13 +74,13 @@
                   n = _G.get_evil_color("red"),
                   i = _G.get_evil_color("green"),
                   v = _G.get_evil_color("blue"),
-                  [''] = _G.get_evil_color("blue"),
+                  ["\22"] = _G.get_evil_color("blue"),
                   V = _G.get_evil_color("blue"),
                   c = _G.get_evil_color("magenta"),
                   no = _G.get_evil_color("red"),
                   s = _G.get_evil_color("orange"),
                   S = _G.get_evil_color("orange"),
-                  [''] = _G.get_evil_color("orange"),
+                  ["\19"] = _G.get_evil_color("orange"),
                   ic = _G.get_evil_color("yellow"),
                   R = _G.get_evil_color("violet"),
                   Rv = _G.get_evil_color("violet"),
@@ -88,8 +88,8 @@
                   ce = _G.get_evil_color("red"),
                   r = _G.get_evil_color("cyan"),
                   rm = _G.get_evil_color("cyan"),
-                  ['r?'] = _G.get_evil_color("cyan"),
-                  ['!'] = _G.get_evil_color("red"),
+                  ["r?"] = _G.get_evil_color("cyan"),
+                  ["!"] = _G.get_evil_color("red"),
                   t = _G.get_evil_color("red")
                 }
                 return { fg = mode_color[vim.fn.mode()] }
