@@ -47,6 +47,9 @@
         jsonls = {
           enable = true;
         };
+        ocamllsp = {
+          enable = true;
+        };
         clangd = {
           enable = true;
         };
