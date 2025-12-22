@@ -104,6 +104,7 @@
           ];
           lua = [ "stylua" ];
           nix = [ "nixfmt-rfc-style" ];
+          ocaml = [ "ocamlformat" ];
           markdown = {
             __unkeyed-1 = "prettierd";
             __unkeyed-2 = "prettier";
@@ -131,6 +132,9 @@
           };
           isort = {
             command = "${lib.getExe pkgs.isort}";
+          };
+          ocamlformat = {
+            command = "${lib.getExe pkgs.ocamlformat}";
           };
           nixfmt-rfc-style = {
             command = "${lib.getExe pkgs.nixfmt-rfc-style}";
