@@ -49,6 +49,7 @@
         };
         ocamllsp = {
           enable = true;
+          package = null;
         };
         clangd = {
           enable = true;
