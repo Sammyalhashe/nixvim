@@ -53,6 +53,30 @@
         };
         clangd = {
           enable = true;
+          cmd = [
+            "clangd"
+            "--background-index"
+            "--clang-tidy"
+            "--header-insertion=iwyu"
+            "--completion-style=detailed"
+          ];
+
+          # Filetypes
+          filetypes = [
+            "c"
+            "cpp"
+            "objc"
+            "objcpp"
+            "cuda"
+          ];
+
+          # Root directory detection
+          rootMarkers = [
+            ".clangd"
+            "compile_commands.json"
+            ".git"
+            "CMakeLists.txt"
+          ];
         };
         helm_ls = {
           enable = true;

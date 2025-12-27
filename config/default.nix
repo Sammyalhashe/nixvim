@@ -9,6 +9,7 @@
     # import wsl option config
     ./modules/wsl-option.nix
     ./modules/obsidian-option.nix
+    ./modules/cpp-comments.nix
     # General Configuration
     ./settings.nix
     ./keymaps.nix
