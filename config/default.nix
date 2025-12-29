@@ -23,7 +23,6 @@
     # ./plugins/cmp/cmp.nix
     ./plugins/cmp/blink-cmp.nix
     # ./plugins/cmp/cmp-copilot.nix
-    ./plugins/cmp/lspkind.nix
     ./plugins/cmp/autopairs.nix
     ./plugins/cmp/schemastore.nix
 
@@ -65,7 +64,6 @@
     ./plugins/utils/spectre.nix
     ./plugins/utils/telescope.nix
     ./plugins/utils/toggleterm.nix
-    ./plugins/utils/web-devicons.nix
     ./plugins/utils/whichkey.nix
   ];
 }

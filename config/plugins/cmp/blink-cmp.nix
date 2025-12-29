@@ -13,6 +13,19 @@
         nerd_font_variant = "mono";
       };
 
+      completion = {
+        menu = {
+          draw = {
+            components = {
+              kind_icon = {
+                text.__raw = "function(ctx) return require('mini.icons').get('lsp', ctx.kind) end";
+                highlight.__raw = "function(ctx) local _, hl, _ = require('mini.icons').get('lsp', ctx.kind) return hl end";
+              };
+            };
+          };
+        };
+      };
+
       # Completion sources
       sources = {
         default = [
