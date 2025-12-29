@@ -124,26 +124,26 @@
           }
         ];
         lspBuf = {
-          gd = {
-            action = "definition";
-            desc = "Goto Definition";
-          };
+          # gd = {
+          #   action = "definition";
+          #   desc = "Goto Definition";
+          # };
           # gr = {
           #   # action = "references";
           #   desc = "Goto References";
           # };
-          gD = {
-            action = "declaration";
-            desc = "Goto Declaration";
-          };
-          gI = {
-            action = "implementation";
-            desc = "Goto Implementation";
-          };
-          gT = {
-            action = "type_definition";
-            desc = "Type Definition";
-          };
+          # gD = {
+          #   action = "declaration";
+          #   desc = "Goto Declaration";
+          # };
+          # gI = {
+          #   action = "implementation";
+          #   desc = "Goto Implementation";
+          # };
+          # gT = {
+          #   action = "type_definition";
+          #   desc = "Type Definition";
+          # };
           K = {
             action = "hover";
             desc = "Hover";
@@ -216,17 +216,25 @@
           trouble.focus()
         end, { buffer = buf, desc = "LSP References (Trouble)" })
         
-        -- vim.keymap.set("n", "gI", function()
-        --   trouble.open("lsp_implementations")
-        -- end, { buffer = buf, desc = "LSP Implementations (Trouble)" })
-        --
-        -- vim.keymap.set("n", "gD", function()
-        --   trouble.open("lsp_declarations")
-        -- end, { buffer = buf, desc = "LSP Declarations (Trouble)" })
-        --
-        -- vim.keymap.set("n", "gT", function()
-        --   trouble.open("lsp_type_definitions")
-        -- end, { buffer = buf, desc = "LSP Type Definitions (Trouble)" })
+        vim.keymap.set("n", "<Space>gd", function()
+          trouble.open("lsp_definitions")
+          trouble.focus()
+        end, { buffer = buf, desc = "LSP Definitions (Trouble)" })
+
+        vim.keymap.set("n", "<Space>gI", function()
+          trouble.open("lsp_implementations")
+          trouble.focus()
+        end, { buffer = buf, desc = "LSP Implementations (Trouble)" })
+
+        vim.keymap.set("n", "<Space>gD", function()
+          trouble.open("lsp_declarations")
+          trouble.focus()
+        end, { buffer = buf, desc = "LSP Declarations (Trouble)" })
+
+        vim.keymap.set("n", "<Space>gT", function()
+          trouble.open("lsp_type_definitions")
+          trouble.focus()
+        end, { buffer = buf, desc = "LSP Type Definitions (Trouble)" })
       end
     })
   '';
