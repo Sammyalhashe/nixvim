@@ -11,33 +11,18 @@
       appearance = {
         use_nvim_cmp_as_default = true;
         nerd_font_variant = "mono";
-        kind_icons = {
-          Text = "󰊄";
-          Method = "";
-          Function = "󰡱";
-          Constructor = "";
-          Field = "";
-          Variable = "󱀍";
-          Class = "";
-          Interface = "";
-          Module = "󰕳";
-          Property = "";
-          Unit = "";
-          Value = "";
-          Enum = "";
-          Keyword = "";
-          Snippet = "";
-          Color = "";
-          File = "";
-          Reference = "";
-          Folder = "";
-          EnumMember = "";
-          Constant = "";
-          Struct = "";
-          Event = "";
-          Operator = "";
-          TypeParameter = "";
-          Copilot = "";
+      };
+
+      completion = {
+        menu = {
+          draw = {
+            components = {
+              kind_icon = {
+                text.__raw = "function(ctx) return require('mini.icons').get('lsp', ctx.kind) end";
+                highlight.__raw = "function(ctx) local _, hl, _ = require('mini.icons').get('lsp', ctx.kind) return hl end";
+              };
+            };
+          };
         };
       };
 

@@ -1,8 +1,10 @@
 {
   plugins.mini = {
     enable = true;
+    mockDevIcons = true;
 
     modules = {
+      icons = { };
       indentscope = {
         symbol = "│";
         options = {

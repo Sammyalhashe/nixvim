@@ -64,7 +64,6 @@
     ./plugins/utils/spectre.nix
     ./plugins/utils/telescope.nix
     ./plugins/utils/toggleterm.nix
-    ./plugins/utils/web-devicons.nix
     ./plugins/utils/whichkey.nix
   ];
 }
