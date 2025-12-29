@@ -6,6 +6,8 @@
       callback = function()
         vim.opt_local.formatoptions:append("cro")
         vim.bo.commentstring = "/* %s */"
+        vim.opt_local.cindent = true
+        vim.opt_local.indentexpr = ""
       end,
     })
   '';
