@@ -156,6 +156,10 @@
             action = "rename";
             desc = "Rename";
           };
+          "<leader>ac" = {
+            action = "code_action";
+            desc = "Code Action";
+          };
         };
         diagnostic = {
           "<leader>cd" = {
