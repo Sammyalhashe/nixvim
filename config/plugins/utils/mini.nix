@@ -11,6 +11,8 @@
       };
       surround = { };
 
+      cmdline = { };
+
       pick = {
         mappings = {
           move_down = "<C-j>";
