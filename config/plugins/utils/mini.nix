@@ -13,7 +13,7 @@
       };
       surround = { };
 
-      cmdline = { };
+      # cmdline = { };
 
       pick = {
         mappings = {
