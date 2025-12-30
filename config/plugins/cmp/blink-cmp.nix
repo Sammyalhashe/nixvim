@@ -51,6 +51,10 @@
           "snippet_backward"
           "fallback"
         ];
+        "<CR>" = [
+          "accept"
+          "fallback"
+        ];
       };
     };
   };
