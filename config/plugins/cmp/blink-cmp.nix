@@ -41,10 +41,20 @@
       # Keymaps
       keymap = {
         preset = "default";
-        # Add custom keymaps here if needed to match the user's previous preference
-        # The user had <C-d>, <C-f>, <C-e>, <CR>, <Tab>, <S-Tab>
-        # 'default' preset covers most, but Tab handling might need explicit config if they want super-tab behavior.
-        # For now, default is a safe start.
+        "<Tab>" = [
+          "select_next"
+          "snippet_forward"
+          "fallback"
+        ];
+        "<S-Tab>" = [
+          "select_prev"
+          "snippet_backward"
+          "fallback"
+        ];
+        "<CR>" = [
+          "accept"
+          "fallback"
+        ];
       };
     };
   };
