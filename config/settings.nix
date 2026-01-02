@@ -17,6 +17,10 @@
 
       vim.g.disable_autoformat = true;
 
+      if vim.fn.executable("nu") == 1 then
+        vim.o.shell = "nu"
+      end
+
       -- Theme switching
       local timer = vim.loop.new_timer()
       timer:start(0, 2000, vim.schedule_wrap(function()
@@ -89,7 +93,7 @@
       scrolloff = 8;
 
       # Enable mouse support
-      mouse = "a";
+      mouse = "";
 
       # Set folding method to manual
       foldmethod = "manual";
