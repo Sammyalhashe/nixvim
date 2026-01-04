@@ -62,6 +62,30 @@
             "--completion-style=detailed"
             "--compile-commands-dir=."
           ];
+          extraOptions = {
+            on_new_config.__raw = ''
+              function(new_config, new_root_dir)
+                local function file_exists(name)
+                  local f = io.open(name, "r")
+                  if f ~= nil then io.close(f) return true else return false end
+                end
+
+                if file_exists(new_root_dir .. "/flake.nix") or file_exists(new_root_dir .. "/flake.lock") then
+                  local cmd = new_config.cmd
+                  local found = false
+                  for _, v in ipairs(cmd) do
+                    if string.match(v, "^--query%-driver=") then
+                      found = true
+                      break
+                    end
+                  end
+                  if not found then
+                    table.insert(cmd, "--query-driver=/nix/store/*/bin/clang++,/nix/store/*/bin/g++")
+                  end
+                end
+              end
+            '';
+          };
 
           # Filetypes
           filetypes = [
