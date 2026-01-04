@@ -53,12 +53,14 @@
         };
         clangd = {
           enable = true;
+          package = null;
           cmd = [
             "clangd"
             "--background-index"
             "--clang-tidy"
             "--header-insertion=iwyu"
             "--completion-style=detailed"
+            "--compile-commands-dir=."
           ];
 
           # Filetypes
