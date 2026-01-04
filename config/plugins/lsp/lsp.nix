@@ -65,12 +65,19 @@
           extraOptions = {
             on_new_config.__raw = ''
               function(new_config, new_root_dir)
-                local function file_exists(name)
-                  local f = io.open(name, "r")
-                  if f ~= nil then io.close(f) return true else return false end
+                local function file_exists(dir)
+                  local path = vim.fn.expand(dir .. "/flake.nix")
+                  if vim.fn.filereadable(path) == 1 then
+                    return true
+                  end
+                  path = vim.fn.expand(dir .. "/flake.lock")
+                  if vim.fn.filereadable(path) == 1 then
+                    return true
+                  end
+                  return false
                 end
 
-                if file_exists(new_root_dir .. "/flake.nix") or file_exists(new_root_dir .. "/flake.lock") then
+                if file_exists(new_root_dir) then
                   local cmd = new_config.cmd
                   local found = false
                   for _, v in ipairs(cmd) do
