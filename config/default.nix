@@ -37,6 +37,7 @@
     ./plugins/editor/indent-blankline.nix
     ./plugins/editor/todo-comments.nix
     ./plugins/editor/copilot-chat.nix
+    ./plugins/editor/codecompanion.nix
     ./plugins/editor/navic.nix
 
     # UI plugins
