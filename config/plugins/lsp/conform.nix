@@ -117,6 +117,8 @@
           };
           terraform = [ "terraform_fmt" ];
           bicep = [ "bicep" ];
+          c = [ "clang_format" ];
+          cpp = [ "clang_format" ];
           bash = [
             "shellcheck"
             "shellharden"
@@ -127,6 +129,9 @@
         };
 
         formatters = {
+          clang_format = {
+            command = "${pkgs.clang-tools}/bin/clang-format";
+          };
           black = {
             command = "${lib.getExe pkgs.black}";
           };
