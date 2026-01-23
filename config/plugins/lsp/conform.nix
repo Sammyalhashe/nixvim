@@ -129,6 +129,13 @@
         };
 
         formatters = {
+          bde_format = {
+            command = "bde-format";
+            args = [
+              "--assume-filename"
+              "$FILENAME"
+            ];
+          };
           clang_format = {
             command = "${pkgs.clang-tools}/bin/clang-format";
           };
