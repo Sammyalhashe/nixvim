@@ -564,5 +564,13 @@
         desc = "Format Buffer";
       };
     }
+    {
+      mode = "n";
+      key = "=b";
+      action = "<cmd>lua require('conform').format({ async = true, formatters = { 'bde_format' } })<cr>";
+      options = {
+        desc = "Format Buffer (BDE)";
+      };
+    }
   ];
 }
