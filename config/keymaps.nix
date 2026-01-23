@@ -572,5 +572,21 @@
         desc = "Format Buffer (BDE)";
       };
     }
+    {
+      mode = "x";
+      key = "=f";
+      action = "<esc><cmd>lua require('conform').format({ async = true, lsp_fallback = true, range = { ['start'] = vim.api.nvim_buf_get_mark(0, '<'), ['end'] = vim.api.nvim_buf_get_mark(0, '>') } })<cr>";
+      options = {
+        desc = "Format Selection";
+      };
+    }
+    {
+      mode = "x";
+      key = "=b";
+      action = "<esc><cmd>lua require('conform').format({ async = true, formatters = { 'bde_format' }, range = { ['start'] = vim.api.nvim_buf_get_mark(0, '<'), ['end'] = vim.api.nvim_buf_get_mark(0, '>') } })<cr>";
+      options = {
+        desc = "Format Selection (BDE)";
+      };
+    }
   ];
 }
