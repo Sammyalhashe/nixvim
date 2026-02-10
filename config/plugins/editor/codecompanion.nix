@@ -1,30 +1,31 @@
 {
-  pkgs,
-  ...
-}:
-{
-  extraPackages = [ pkgs.gemini-cli ];
   plugins.codecompanion = {
     enable = true;
     settings = {
-      interactions = {
+      strategies = {
         chat = {
-          adapter = "gemini_cli";
+          adapter = "mothership_qwen";
+        };
+        inline = {
+          adapter = "mothership_qwen";
         };
       };
       adapters = {
-        acp = {
-          gemini_cli = {
-            __raw = ''
-              function()
-                return require("codecompanion.adapters").extend("gemini_cli", {
-                  defaults = {
-                    auth_method = "oauth-personal",
-                  },
-                })
-              end
-            '';
-          };
+        mothership_qwen = {
+          __raw = ''
+            function()
+                        return require("codecompanion.adapters").extend("openai_compatible", {
+                          env = {
+                            url = "http://11.125.37.172:8012",
+                            api_key = "none",
+                          },
+                          schema = {
+                            model = {
+                              default = "qwen2.5-coder-32b-instruct",
+                            },
+                          },
+                        })
+                      end'';
         };
       };
     };
