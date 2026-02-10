@@ -16,7 +16,7 @@
             function()
                         return require("codecompanion.adapters").extend("openai_compatible", {
                           env = {
-                            url = "http://11.125.37.172:8012",
+                            url = "http://11.125.37.101:8012",
                             api_key = "none",
                           },
                           schema = {
