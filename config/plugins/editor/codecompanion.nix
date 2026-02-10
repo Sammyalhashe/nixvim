@@ -5,6 +5,12 @@
       strategies = {
         chat = {
           adapter = "mothership_qwen";
+          tools = {
+            mcp = {
+              callback = "require('mcphub.extensions.codecompanion').tool_callback";
+              description = "Call tools through MCP Hub";
+            };
+          };
         };
         inline = {
           adapter = "mothership_qwen";
