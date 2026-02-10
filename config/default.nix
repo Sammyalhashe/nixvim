@@ -38,6 +38,7 @@
     ./plugins/editor/todo-comments.nix
     ./plugins/editor/copilot-chat.nix
     ./plugins/editor/codecompanion.nix
+    ./plugins/editor/mcphub.nix
     ./plugins/editor/navic.nix
 
     # UI plugins
