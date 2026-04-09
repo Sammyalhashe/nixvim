@@ -36,7 +36,7 @@
     ./plugins/editor/illuminate.nix
     ./plugins/editor/indent-blankline.nix
     ./plugins/editor/todo-comments.nix
-    ./plugins/editor/copilot-chat.nix
+    ./plugins/editor/claudecode.nix
     ./plugins/editor/codecompanion.nix
     ./plugins/editor/mcphub.nix
     ./plugins/editor/navic.nix
