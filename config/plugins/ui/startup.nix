@@ -2,12 +2,12 @@
   plugins.startup = {
     enable = true;
 
-    colors = {
-      background = "#ffffff";
-      foldedSection = "#ffffff";
-    };
+    settings = {
+      colors = {
+        background = "#ffffff";
+        folded_section = "#ffffff";
+      };
 
-    sections = {
       header = {
         type = "text";
         oldfilesDirectory = false;
@@ -39,7 +39,7 @@
         margin = 5;
         content = [
           [
-            " Find File"
+            " Find File"
             "lua MiniPick.builtin.files()"
             "ff"
           ]
@@ -49,17 +49,17 @@
             "fr"
           ]
           [
-            " Recent Files"
+            " Recent Files"
             "lua MiniExtra and MiniExtra.pickers.oldfiles() or MiniPick.builtin.files()"
             "fg"
           ]
           [
-            " File Browser"
+            " File Browser"
             "Neotree"
             "fe"
           ]
           [
-            " Claude Code"
+            " Claude Code"
             "ClaudeCode"
             "cc"
           ]
@@ -73,18 +73,18 @@
         defaultColor = "";
         oldfilesAmount = 0;
       };
-    };
 
-    options = {
-      paddings = [
-        1
-        3
+      options = {
+        paddings = [
+          1
+          3
+        ];
+      };
+
+      parts = [
+        "header"
+        "body"
       ];
     };
-
-    parts = [
-      "header"
-      "body"
-    ];
   };
 }
