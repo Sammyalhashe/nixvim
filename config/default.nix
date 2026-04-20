@@ -20,10 +20,7 @@
     ./plugins/themes
 
     # Completion
-    # ./plugins/cmp/cmp.nix
     ./plugins/cmp/blink-cmp.nix
-    # ./plugins/cmp/cmp-copilot.nix
-    ./plugins/cmp/autopairs.nix
     ./plugins/cmp/schemastore.nix
 
     # Snippets
@@ -32,9 +29,9 @@
     # Editor plugins and configurations
     ./plugins/editor/neo-tree.nix
     ./plugins/editor/treesitter.nix
+    ./plugins/editor/custom-parsers.nix
     ./plugins/editor/undotree.nix
     ./plugins/editor/illuminate.nix
-    ./plugins/editor/indent-blankline.nix
     ./plugins/editor/todo-comments.nix
     ./plugins/editor/claudecode.nix
     ./plugins/editor/codecompanion.nix
@@ -64,7 +61,6 @@
     ./plugins/utils/mini.nix
     ./plugins/utils/obsidian.nix
     ./plugins/utils/spectre.nix
-    ./plugins/utils/telescope.nix
     ./plugins/utils/toggleterm.nix
     ./plugins/utils/whichkey.nix
   ];
