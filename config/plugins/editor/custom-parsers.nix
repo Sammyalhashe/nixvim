@@ -11,10 +11,6 @@ in
     local parsers_dir = vim.fn.expand("${parsersDir}")
     if vim.fn.isdirectory(parsers_dir) == 1 then
       vim.opt.runtimepath:append(parsers_dir)
-
-      require("nvim-treesitter.configs").setup({
-        parser_install_dir = parsers_dir,
-      })
     end
 
     vim.filetype.add({
