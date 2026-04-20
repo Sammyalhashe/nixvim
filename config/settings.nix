@@ -23,7 +23,7 @@
 
       -- Theme switching
       local timer = vim.loop.new_timer()
-      timer:start(0, 2000, vim.schedule_wrap(function()
+      timer:start(0, 5000, vim.schedule_wrap(function()
           local f = io.open("/etc/current-theme", "r")
           if f then
               local content = f:read("*all")

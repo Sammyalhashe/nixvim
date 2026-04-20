@@ -4,9 +4,6 @@
     lsp-lines = {
       enable = true;
     };
-    lsp-format = {
-      enable = false;
-    };
     helm = {
       enable = true;
     };
@@ -157,26 +154,6 @@
           }
         ];
         lspBuf = {
-          # gd = {
-          #   action = "definition";
-          #   desc = "Goto Definition";
-          # };
-          # gr = {
-          #   # action = "references";
-          #   desc = "Goto References";
-          # };
-          # gD = {
-          #   action = "declaration";
-          #   desc = "Goto Declaration";
-          # };
-          # gI = {
-          #   action = "implementation";
-          #   desc = "Goto Implementation";
-          # };
-          # gT = {
-          #   action = "type_definition";
-          #   desc = "Type Definition";
-          # };
           K = {
             action = "hover";
             desc = "Hover";
@@ -211,10 +188,6 @@
       };
     };
   };
-  extraPlugins = with pkgs.vimPlugins; [
-    ansible-vim
-  ];
-
   extraConfigLua = ''
         local _border = "rounded"
 

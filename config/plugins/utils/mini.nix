@@ -4,6 +4,7 @@
     mockDevIcons = true;
 
     modules = {
+      ai = { };
       icons = { };
       indentscope = {
         symbol = "│";
@@ -11,9 +12,9 @@
           try_as_border = true;
         };
       };
+      move = { };
+      pairs = { };
       surround = { };
-
-      # cmdline = { };
 
       pick = {
         mappings = {

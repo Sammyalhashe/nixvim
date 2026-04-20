@@ -40,28 +40,28 @@
         content = [
           [
             " Find File"
-            "Telescope find_files"
+            "lua MiniPick.builtin.files()"
             "ff"
           ]
           [
             "󰍉 Find Word"
-            "Telescope live_grep"
+            "lua MiniPick.builtin.grep_live()"
             "fr"
           ]
           [
             " Recent Files"
-            "Telescope oldfiles"
+            "lua MiniExtra and MiniExtra.pickers.oldfiles() or MiniPick.builtin.files()"
             "fg"
           ]
           [
             " File Browser"
-            "Telescope file_browser"
+            "Neotree"
             "fe"
           ]
           [
-            " Copilot Chat"
-            "CopilotChat"
-            "ct"
+            " Claude Code"
+            "ClaudeCode"
+            "cc"
           ]
           [
             "󰧑 SecondBrain"
