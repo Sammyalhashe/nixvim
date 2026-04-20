@@ -11,7 +11,7 @@
               description = "Insert open buffers";
               opts = {
                 contains_code = true;
-                provider = "telescope";
+                provider = "mini_pick";
               };
             };
             file = {
@@ -20,7 +20,7 @@
               opts = {
                 contains_code = true;
                 max_lines = 1000;
-                provider = "telescope";
+                provider = "mini_pick";
               };
             };
             help = {
@@ -28,7 +28,7 @@
               description = "Insert content from help tags";
               opts = {
                 contains_code = false;
-                provider = "telescope";
+                provider = "mini_pick";
               };
             };
             symbols = {
@@ -36,7 +36,7 @@
               description = "Insert symbols for a selected file";
               opts = {
                 contains_code = true;
-                provider = "telescope";
+                provider = "mini_pick";
               };
             };
           };

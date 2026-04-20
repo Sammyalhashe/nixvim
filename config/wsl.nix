@@ -18,10 +18,7 @@
     ./plugins/themes
 
     # Completion
-    ./plugins/cmp/cmp.nix
-    ./plugins/cmp/cmp-copilot.nix
-    ./plugins/cmp/lspkind.nix
-    ./plugins/cmp/autopairs.nix
+    ./plugins/cmp/blink-cmp.nix
     ./plugins/cmp/schemastore.nix
 
     # Snippets
@@ -32,15 +29,17 @@
     ./plugins/editor/treesitter.nix
     ./plugins/editor/undotree.nix
     ./plugins/editor/illuminate.nix
-    ./plugins/editor/indent-blankline.nix
     ./plugins/editor/todo-comments.nix
-    ./plugins/editor/copilot-chat.nix
+    ./plugins/editor/claudecode.nix
+    ./plugins/editor/codecompanion.nix
+    ./plugins/editor/mcphub.nix
     ./plugins/editor/navic.nix
 
     # UI plugins
     ./plugins/ui/bufferline.nix
     ./plugins/ui/lualine.nix
     ./plugins/ui/startup.nix
+    ./plugins/ui/trouble.nix
 
     # LSP and formatting
     ./plugins/lsp/lsp.nix
@@ -58,7 +57,6 @@
     ./plugins/utils/markview.nix
     ./plugins/utils/mini.nix
     ./plugins/utils/obsidian.nix
-    ./plugins/utils/telescope.nix
     ./plugins/utils/toggleterm.nix
     ./plugins/utils/whichkey.nix
   ];

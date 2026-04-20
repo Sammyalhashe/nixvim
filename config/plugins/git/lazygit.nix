@@ -4,10 +4,6 @@
     lazygit-nvim
   ];
 
-  extraConfigLua = ''
-    require("telescope").load_extension("lazygit")
-  '';
-
   keymaps = [
     {
       mode = "n";

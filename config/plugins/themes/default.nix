@@ -20,7 +20,7 @@
         no_underline = false;
         transparent_background = true;
         integrations = {
-          cmp = true;
+          cmp = false;
           notify = true;
           gitsigns = true;
           neotree = true;
@@ -34,8 +34,7 @@
             custom_bg = "NONE";
           };
           treesitter = true;
-          telescope.enabled = true;
-          indent_blankline.enabled = true;
+          indent_blankline.enabled = false;
           mini = {
             enabled = true;
             indentscope_color = "rosewater";
