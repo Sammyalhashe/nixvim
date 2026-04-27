@@ -1,4 +1,4 @@
-{ _ }:
+{ config, ... }:
 {
   extraFiles = {
     "ftplugin/nix.lua".text = ''
