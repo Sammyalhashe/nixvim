@@ -53,7 +53,7 @@
     ./plugins/lsp/fidget.nix
 
     # Git
-    ./plugins/git/lazygit.nix
+    ./plugins/git/jiejie-nvim.nix
     ./plugins/git/gitsigns.nix
     ./plugins/git/fugitive.nix
 

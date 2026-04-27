@@ -6,7 +6,8 @@
   extraPlugins = [
     pkgs.vimPlugins.plenary-nvim
     (pkgs.vimUtils.buildVimPlugin {
-      name = "mcphub.nvim";
+      pname = "mcphub.nvim";
+      version = "unstable-2025-01-31";
       doCheck = false;
       src = pkgs.fetchFromGitHub {
         owner = "ravitemer";
