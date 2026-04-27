@@ -1,8 +1,10 @@
-_: {
+{ pkgs, ... }:
+{
   plugins.toggleterm = {
     enable = true;
     settings = {
       size = 20;
+      shell = "${pkgs.nushell}/bin/nu";
     };
   };
   keymaps = [
