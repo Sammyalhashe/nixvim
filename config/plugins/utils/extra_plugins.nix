@@ -1,7 +1,6 @@
-{
-  pkgs,
-  ...
-}:
+# Extra Plugins
+# This file is used to load external Neovim plugins that are not currently packaged as NixVim modules.
+{ pkgs, ... }:
 {
   extraPlugins = [
     pkgs.vimPlugins.plenary-nvim

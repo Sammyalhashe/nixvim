@@ -1,3 +1,5 @@
+# Global Keybindings
+# Defines the leader key and all custom mappings for navigation, windows, tabs, and plugin integrations.
 {
   globals.mapleader = " ";
 

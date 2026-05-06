@@ -1,3 +1,5 @@
+# Main configuration entry point
+# This file coordinates the imports of all settings, keymaps, autocommands, and plugins.
 {
   pkgs,
   lib,

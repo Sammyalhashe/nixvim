@@ -1,3 +1,5 @@
+# Core Neovim settings
+# This file manages global options (opts), clipboard, diagnostics signs, and custom Lua-based logic.
 { pkgs, ... }:
 {
   config = {

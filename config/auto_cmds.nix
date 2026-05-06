@@ -1,3 +1,5 @@
+# Automatic Commands
+# Configures event-driven behavior such as yank highlighting, startup screens, and cursor position restoration.
 {
   autoGroups = {
     highlight_yank = { };
