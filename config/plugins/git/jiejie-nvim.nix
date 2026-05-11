@@ -8,7 +8,7 @@
           owner = "jceb";
           repo = "jiejie.nvim";
           rev = "main";
-          sha256 = "sha256-vpaV1xelIhC6fJS/dINIRqUr4syX+Yo3KUahKp11U1E=";
+          sha256 = "sha256-LLx7nYq42gACNsj4eZm1noYTomBTirQ/2vtjtCMXoY0=";
         };
       })
       
