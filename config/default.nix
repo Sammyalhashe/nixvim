@@ -56,8 +56,11 @@
 
     # Git
     ./plugins/git/jiejie-nvim.nix
+    ./plugins/git/lazygit.nix
+    # ./plugins/git/lazygit.nix
     ./plugins/git/gitsigns.nix
     ./plugins/git/fugitive.nix
+    ./plugins/git/lazyjui.nix
 
     # Utils
     ./plugins/utils/extra_plugins.nix
