@@ -186,7 +186,19 @@
             color.__raw = "function() return { fg = _G.get_evil_color('green'), gui = 'bold' } end";
           }
           {
-            __unkeyed-1 = "branch";
+            __unkeyed-1.__raw = ''
+              function()
+                local jj = vim.fn.system("jj log -r @ -T 'if(bookmarks, bookmarks, change_id.short())' --no-graph 2>/dev/null")
+                if vim.v.shell_error == 0 and jj ~= "" then
+                  return vim.trim(jj)
+                end
+                local branch = vim.fn.system("git branch --show-current 2>/dev/null")
+                if vim.v.shell_error == 0 and branch ~= "" then
+                  return vim.trim(branch)
+                end
+                return ""
+              end
+            '';
             icon = "";
             color.__raw = "function() return { fg = _G.get_evil_color('violet'), gui = 'bold' } end";
           }
