@@ -48,7 +48,7 @@
             "alpha"
           ];
         };
-        theme = "catppuccin";
+        theme.__raw = "require('catppuccin.utils.lualine')()";
         component_separators = "";
         section_separators = "";
       };
