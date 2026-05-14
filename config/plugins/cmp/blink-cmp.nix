@@ -1,6 +1,6 @@
 {
   plugins.blink-cmp = {
-    enable = true;
+    enable = false;
     settings = {
       # Use the 'luasnip' preset since the user already uses luasnip
       snippets = {

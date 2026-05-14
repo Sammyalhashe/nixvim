@@ -25,6 +25,7 @@
     ./plugins/themes
 
     # Completion
+    ./plugins/cmp/builtin-completion.nix
     ./plugins/cmp/blink-cmp.nix
     ./plugins/cmp/schemastore.nix
 
