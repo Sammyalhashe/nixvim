@@ -7,8 +7,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "jceb";
           repo = "jiejie.nvim";
-          rev = "main";
-          sha256 = "sha256-LLx7nYq42gACNsj4eZm1noYTomBTirQ/2vtjtCMXoY0=";
+          rev = "7aaaae4a882e25c82dd8504fff05a0cbc619cab6";
+          sha256 = "sha256-SGMX5fv39iK+HDcc1DY3elnTWlzm6nCDa73ksT5lyrw=";
         };
       })
       
