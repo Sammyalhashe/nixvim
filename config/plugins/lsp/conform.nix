@@ -78,6 +78,9 @@
         '';
         notify_on_error = true;
         formatters_by_ft = {
+          zig = [
+            "zigfmt"
+          ];
           html = {
             __unkeyed-1 = "prettierd";
             __unkeyed-2 = "prettier";
