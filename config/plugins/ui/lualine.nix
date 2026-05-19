@@ -32,6 +32,43 @@
         return gitdir and #gitdir > 0 and #gitdir < #filepath
       end,
     }
+
+    _G._vcs_branch_cache = ""
+    _G._vcs_branch_updating = false
+    _G._vcs_branch_update = function()
+      if _G._vcs_branch_updating then return end
+      _G._vcs_branch_updating = true
+      vim.system(
+        { "jj", "log", "-r", "@", "-T", "if(bookmarks, bookmarks, change_id.short())", "--no-graph" },
+        { text = true },
+        function(jj_result)
+          if jj_result.code == 0 and jj_result.stdout and jj_result.stdout ~= "" then
+            _G._vcs_branch_cache = vim.trim(jj_result.stdout)
+            _G._vcs_branch_updating = false
+            return
+          end
+          vim.system(
+            { "git", "branch", "--show-current" },
+            { text = true },
+            function(git_result)
+              if git_result.code == 0 and git_result.stdout and git_result.stdout ~= "" then
+                _G._vcs_branch_cache = vim.trim(git_result.stdout)
+              else
+                _G._vcs_branch_cache = ""
+              end
+              _G._vcs_branch_updating = false
+            end
+          )
+        end
+      )
+    end
+
+    local vcs_augroup = vim.api.nvim_create_augroup("VcsBranchCache", { clear = true })
+    vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "DirChanged" }, {
+      group = vcs_augroup,
+      callback = function() _G._vcs_branch_update() end,
+    })
+    vim.defer_fn(_G._vcs_branch_update, 0)
   '';
   plugins.lualine = {
     enable = true;
@@ -188,15 +225,7 @@
           {
             __unkeyed-1.__raw = ''
               function()
-                local jj = vim.fn.system("jj log -r @ -T 'if(bookmarks, bookmarks, change_id.short())' --no-graph 2>/dev/null")
-                if vim.v.shell_error == 0 and jj ~= "" then
-                  return vim.trim(jj)
-                end
-                local branch = vim.fn.system("git branch --show-current 2>/dev/null")
-                if vim.v.shell_error == 0 and branch ~= "" then
-                  return vim.trim(branch)
-                end
-                return ""
+                return _G._vcs_branch_cache or ""
               end
             '';
             icon = "";
