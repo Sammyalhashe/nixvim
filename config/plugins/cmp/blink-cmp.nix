@@ -4,7 +4,7 @@
     settings = {
       # Use the 'luasnip' preset since the user already uses luasnip
       snippets = {
-        preset = "luasnip";
+        preset = "mini_snippets";
       };
 
       # Appearance settings to match the previous cmp config (roughly)
