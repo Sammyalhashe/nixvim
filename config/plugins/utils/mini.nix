@@ -13,11 +13,11 @@
               local snippets = {}
               local ft = vim.bo.filetype
 
-              if vim.tbl_contains({ 'cpp', 'c', 'java', 'javascript', 'typescript', 'go', 'rust' }, ft) then
+              if vim.tbl_contains({ 'cpp', 'c' }, ft) then
                 table.insert(snippets, {
-                  prefix = 'hdr',
-                  desc = 'Section header comment block',
-                  body = '// ''${1/./-/g}\n// ''${1:text}\n// ''${1/./-/g}',
+                  prefix = 'guard',
+                  desc = 'Include guard',
+                  body = '#ifndef INCLUDED_$1\n#define INCLUDED_$1\n\n$0\n\n#endif // INCLUDED_$1',
                 })
               end
 
