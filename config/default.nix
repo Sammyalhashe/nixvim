@@ -61,6 +61,7 @@
     ./plugins/git/gitsigns.nix
     ./plugins/git/fugitive.nix
     ./plugins/git/lazyjui.nix
+    ./plugins/git/hunk.nix
 
     # Utils
     ./plugins/utils/extra_plugins.nix
