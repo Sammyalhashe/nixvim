@@ -283,7 +283,7 @@
     {
       mode = "n";
       key = "]e";
-      action = "diagnostic_goto(true 'ERROR')";
+      action.__raw = "function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end";
       options = {
         desc = "Next Error";
       };
@@ -291,7 +291,7 @@
     {
       mode = "n";
       key = "[e";
-      action = "diagnostic_goto(false 'ERROR')";
+      action.__raw = "function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end";
       options = {
         desc = "Prev Error";
       };
@@ -299,7 +299,7 @@
     {
       mode = "n";
       key = "]w";
-      action = "diagnostic_goto(true 'WARN')";
+      action.__raw = "function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN }) end";
       options = {
         desc = "Next Warning";
       };
@@ -307,7 +307,7 @@
     {
       mode = "n";
       key = "[w";
-      action = "diagnostic_goto(false 'WARN')";
+      action.__raw = "function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.WARN }) end";
       options = {
         desc = "Prev Warning";
       };
