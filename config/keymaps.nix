@@ -1,6 +1,11 @@
 # Global Keybindings
 # Defines the leader key and all custom mappings for navigation, windows, tabs, and plugin integrations.
 {
+  config,
+  lib,
+  ...
+}:
+{
   globals.mapleader = " ";
 
   keymaps = [
@@ -558,6 +563,9 @@
         desc = "Mini.pick resume";
       };
     }
+  ]
+  # conform format keymaps — omitted on work builds where conform is disabled.
+  ++ lib.optionals (!config.nixvim.work) [
     {
       mode = "n";
       key = "=f";

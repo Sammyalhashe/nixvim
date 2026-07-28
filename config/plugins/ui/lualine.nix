@@ -90,10 +90,10 @@
         section_separators = "";
       };
       sections = {
-        lualine_a = [];
-        lualine_b = [];
-        lualine_y = [];
-        lualine_z = [];
+        lualine_a = [ ];
+        lualine_b = [ ];
+        lualine_y = [ ];
+        lualine_z = [ ];
         lualine_c = [
           {
             __unkeyed-1.__raw = "function() return '▊' end";
@@ -254,12 +254,12 @@
           }
         ];
         inactive_sections = {
-          lualine_a = [];
-          lualine_b = [];
-          lualine_y = [];
-          lualine_z = [];
-          lualine_c = [];
-          lualine_x = [];
+          lualine_a = [ ];
+          lualine_b = [ ];
+          lualine_y = [ ];
+          lualine_z = [ ];
+          lualine_c = [ ];
+          lualine_x = [ ];
         };
       };
     };

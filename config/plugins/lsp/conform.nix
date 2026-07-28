@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -41,7 +42,8 @@
         })
       '';
     plugins.conform-nvim = {
-      enable = true;
+      # Disabled on work builds so conform and its formatters aren't built.
+      enable = !config.nixvim.work;
       settings = {
         format_on_save = ''
           function(bufnr)

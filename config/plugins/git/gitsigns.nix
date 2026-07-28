@@ -24,4 +24,19 @@ _: {
       };
     };
   };
+
+  keymaps = [
+    {
+      mode = "n";
+      key = "]c";
+      action.__raw = "function() require('gitsigns').nav_hunk('next') end";
+      options.desc = "Next change (hunk)";
+    }
+    {
+      mode = "n";
+      key = "[c";
+      action.__raw = "function() require('gitsigns').nav_hunk('prev') end";
+      options.desc = "Prev change (hunk)";
+    }
+  ];
 }

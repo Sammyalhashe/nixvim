@@ -14,6 +14,7 @@
     # import wsl option config
     ./modules/wsl-option.nix
     ./modules/obsidian-option.nix
+    ./modules/work-option.nix
     ./modules/cpp-comments.nix
     # General Configuration
     ./settings.nix
@@ -42,6 +43,7 @@
     ./plugins/editor/codecompanion.nix
     ./plugins/editor/mcphub.nix
     ./plugins/editor/navic.nix
+    ./plugins/editor/nvim-ufo.nix
 
     # UI plugins
     ./plugins/ui/bufferline.nix
@@ -62,6 +64,10 @@
     ./plugins/git/fugitive.nix
     ./plugins/git/lazyjui.nix
     ./plugins/git/hunk.nix
+    ./plugins/git/octo.nix
+
+    # Debug
+    ./plugins/debug/dap.nix
 
     # Utils
     ./plugins/utils/extra_plugins.nix

@@ -100,8 +100,7 @@
       # Set folding method to manual
       foldmethod = "manual";
 
-      # Disable folding by default
-      foldenable = false;
+      # foldenable is controlled by nvim-ufo (see plugins/editor/nvim-ufo.nix)
 
       # Wrap long lines at a character in 'breakat'
       linebreak = true;

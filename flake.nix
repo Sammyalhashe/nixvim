@@ -30,6 +30,7 @@
       flake = {
         nixvimModules.wslOption = import ./config/modules/wsl-option.nix;
         nixvimModules.obsidianOption = import ./config/modules/obsidian-option.nix;
+        nixvimModules.workOption = import ./config/modules/work-option.nix;
       };
 
       perSystem =
@@ -43,20 +44,28 @@
         let
           nixvimLib = nixvim.lib.${system};
           nixvim' = nixvim.legacyPackages.${system};
-          nixvimModule = {
+          # Build a module, parameterized by whether this is a work build.
+          mkModule = work: {
             inherit pkgs;
-            module = import ./config; # import the module directly
+            module = {
+              imports = [ ./config ]; # import the module directly
+              nixvim.work = work;
+            };
             # You can use `extraSpecialArgs` to pass additional arguments to your module files
             extraSpecialArgs = {
               # inherit (inputs) foo;
               wsl = false;
             };
           };
+          nixvimModule = mkModule false;
+          workModule = mkModule true;
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
+          nvimWork = nixvim'.makeNixvimWithModule workModule;
         in
         {
           checks = {
             default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+            work = nixvimLib.check.mkTestDerivationFromNixvimModule workModule;
             pre-commit-check = pre-commit-hooks.lib.${system}.run {
               src = ./.;
               hooks = {
@@ -66,10 +75,11 @@
             };
           };
 
-          formatter = pkgs.nixfmt;
+          formatter = pkgs.nixfmt-tree;
 
           packages = {
             default = nvim;
+            work = nvimWork;
           };
 
           devShells = {

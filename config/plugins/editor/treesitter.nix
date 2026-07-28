@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   # 1. Use the NixVim Treesitter module instead of manual extraPlugins
   # This avoids "two different versions of nvim-treesitter" conflicts.
@@ -58,11 +58,4 @@
       '';
     }
   ];
-
-  # 3. Native Folding
-  opts = {
-    foldmethod = lib.mkForce "expr";
-    foldexpr = lib.mkForce "v:lua.vim.treesitter.foldexpr()";
-    foldlevel = lib.mkForce 99;
-  };
 }
