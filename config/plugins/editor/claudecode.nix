@@ -33,7 +33,10 @@
       end
 
       require("claudecode").setup({
-        auto_start = true,
+        -- Only auto-start when there's a real UI attached. In headless mode
+        -- (e.g. the nixvim build-time check / CI) starting the integration
+        -- emits a "stopped" message on exit that fails the check.
+        auto_start = #vim.api.nvim_list_uis() > 0,
         log_level = "info",
         track_selection = true,
         env = claude_env,

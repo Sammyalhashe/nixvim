@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   plugins.leetcode = {
     enable = true;
     settings = {

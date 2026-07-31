@@ -28,9 +28,11 @@
       ];
 
       flake = {
-        nixvimModules.wslOption = import ./config/modules/wsl-option.nix;
-        nixvimModules.obsidianOption = import ./config/modules/obsidian-option.nix;
-        nixvimModules.workOption = import ./config/modules/work-option.nix;
+        nixvimModules = {
+          wslOption = import ./config/modules/wsl-option.nix;
+          obsidianOption = import ./config/modules/obsidian-option.nix;
+          workOption = import ./config/modules/work-option.nix;
+        };
       };
 
       perSystem =

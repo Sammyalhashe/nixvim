@@ -26,36 +26,38 @@ let
   ];
 in
 {
-  plugins.dap = {
-    enable = true;
+  plugins = {
+    dap = {
+      enable = true;
 
-    adapters.servers.codelldb = {
-      port = "\${port}";
-      executable = {
-        command = codelldbCmd;
-        args = [
-          "--port"
-          "\${port}"
-        ];
+      adapters.servers.codelldb = {
+        port = "\${port}";
+        executable = {
+          command = codelldbCmd;
+          args = [
+            "--port"
+            "\${port}"
+          ];
+        };
+      };
+
+      configurations = {
+        cpp = cppConfigurations;
+        c = cppConfigurations;
+      };
+
+      signs = {
+        dapBreakpoint.text = "";
+        dapBreakpointCondition.text = "";
+        dapLogPoint.text = "";
+        dapStopped.text = "→";
+        dapBreakpointRejected.text = "";
       };
     };
 
-    configurations = {
-      cpp = cppConfigurations;
-      c = cppConfigurations;
-    };
-
-    signs = {
-      dapBreakpoint.text = "";
-      dapBreakpointCondition.text = "";
-      dapLogPoint.text = "";
-      dapStopped.text = "→";
-      dapBreakpointRejected.text = "";
-    };
+    dap-ui.enable = true;
+    dap-virtual-text.enable = true;
   };
-
-  plugins.dap-ui.enable = true;
-  plugins.dap-virtual-text.enable = true;
 
   # Auto open/close the dap-ui panels with the debug session (community idiom;
   # no dedicated nixvim option for it). extraConfigLua concatenates across files.
