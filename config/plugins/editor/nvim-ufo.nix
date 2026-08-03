@@ -6,7 +6,18 @@ _: {
     settings = {
       provider_selector.__raw = ''
         function(bufnr, filetype, buftype)
-          return { 'lsp', 'treesitter' }
+          -- Disable UFO for floating, prompt, terminal, or no-file buffers
+          if buftype == "nofile" or buftype == "prompt" or buftype == "terminal" then
+            return ""
+          end
+
+          -- Disable UFO for mini.pick and unnamed filetypes
+          if filetype == "" or filetype == "minipick" or filetype == "mini-pick" then
+            return ""
+          end
+
+          -- Main provider chain: Try treesitter, fall back to indent
+          return { "treesitter", "indent" }
         end
       '';
     };
