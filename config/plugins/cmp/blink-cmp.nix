@@ -7,6 +7,10 @@
         preset = "mini_snippets";
       };
 
+      signature = {
+        enable = true;
+      };
+
       # Appearance settings to match the previous cmp config (roughly)
       appearance = {
         use_nvim_cmp_as_default = true;
