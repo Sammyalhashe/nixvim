@@ -32,6 +32,7 @@
           wslOption = import ./config/modules/wsl-option.nix;
           obsidianOption = import ./config/modules/obsidian-option.nix;
           workOption = import ./config/modules/work-option.nix;
+          darkOption = import ./config/modules/color.nix;
         };
       };
 

@@ -4,6 +4,6 @@
   options.nixvim.obsidian = lib.mkOption {
     type = lib.types.bool;
     default = false;
-    description = "Whether we enable wsl";
+    description = "Whether we enable obsidian";
   };
 }
