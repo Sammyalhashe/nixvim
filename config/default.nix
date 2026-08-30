@@ -15,6 +15,7 @@
     ./modules/wsl-option.nix
     ./modules/obsidian-option.nix
     ./modules/work-option.nix
+    ./modules/color.nix
     ./modules/cpp-comments.nix
     # General Configuration
     ./settings.nix
