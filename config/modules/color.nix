@@ -2,16 +2,16 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.nixvim.dark;
+  cfg = config.nixvim;
 in
 {
-  options.nixvim.dark = lib.mkOption {
+  options.nixvim.light = lib.mkOption {
     type = lib.types.bool;
     default = true;
-    description = "If dark theme is enabled. Otherwise light";
+    description = "Whether to load light mode or not";
   };
 
-  config = {
-    catpuccin.settings.flavour = mkForce (if cfg.dark then "mocha" else "latte");
+  config = mkIf cfg.light {
+    colorschemes.catppuccin.settings.flavour = mkForce "latte";
   };
 }
