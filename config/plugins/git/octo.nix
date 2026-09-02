@@ -1,7 +1,22 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   plugins.octo = {
     enable = true;
+    # Pinned to pwntester/octo.nvim@5ae580d rather than tracking nixpkgs.
+    package = pkgs.vimPlugins.octo-nvim.overrideAttrs (_: {
+      name = "vimplugin-octo.nvim-0-unstable-2026-01-22";
+      src = pkgs.fetchFromGitHub {
+        owner = "pwntester";
+        repo = "octo.nvim";
+        rev = "5ae580df72589f25b775ff2bdacfd7f7be8d63bd";
+        hash = "sha256-lIQS/PNjQb4DSIfHBagYjcIw4Kz4HTZDlcCgSVdZ580=";
+      };
+    });
     settings = {
       picker = "fzf-lua";
     }
