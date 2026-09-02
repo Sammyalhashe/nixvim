@@ -1,17 +1,24 @@
 # nixvim/modules/color.nix
 { config, lib, ... }:
-with lib;
 let
   cfg = config.nixvim;
 in
 {
-  options.nixvim.light = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    description = "Whether to load light mode or not";
+  options.nixvim = {
+    dark = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether to load the dark variant of the colorscheme.";
+    };
+
+    themeWatcher = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether to poll /etc/current-theme and follow the system light/dark setting.";
+    };
   };
 
-  config = mkIf cfg.light {
-    colorschemes.catppuccin.settings.flavour = mkForce "latte";
-  };
+  # Drives the catppuccin `background` map in plugins/themes; do not pin `flavour`,
+  # which would fight the watcher in settings.nix.
+  config.opts.background = if cfg.dark then "dark" else "light";
 }

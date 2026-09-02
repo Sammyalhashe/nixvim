@@ -1,6 +1,11 @@
 # Core Neovim settings
 # This file manages global options (opts), clipboard, diagnostics signs, and custom Lua-based logic.
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   config = {
     extraConfigLuaPre =
@@ -12,41 +17,41 @@
         vim.fn.sign_define("diagnosticsigninfo", { text = " ", texthl = "diagnosticinfo", linehl = "", numhl = "" })
       '';
 
-    extraConfigLua = ''
-      vim.api.nvim_create_user_command("TT", "tabnew | term", {})
-      vim.api.nvim_create_user_command("VT", "vsplit | term", {})
-      vim.api.nvim_create_user_command("ST", "split | term", {})
+    extraConfigLua =
+      # lua
+      ''
+        vim.api.nvim_create_user_command("TT", "tabnew | term", {})
+        vim.api.nvim_create_user_command("VT", "vsplit | term", {})
+        vim.api.nvim_create_user_command("ST", "split | term", {})
 
-      vim.g.disable_autoformat = true;
+        vim.g.disable_autoformat = true;
 
-      if vim.fn.executable("nu") == 1 then
-        vim.o.shell = "nu"
-      end
-
-      -- Theme switching
-      local timer = vim.loop.new_timer()
-      timer:start(0, 5000, vim.schedule_wrap(function()
-          local f = io.open("/etc/current-theme", "r")
-          if f then
-              local content = f:read("*all")
-              f:close()
-              content = content:gsub("%s+", "")
-              if content == "light" then
-                  if vim.o.background ~= "light" then
-                      vim.o.background = "light"
-                  end
-              else
-                  if vim.o.background ~= "dark" then
-                      vim.o.background = "dark"
-                  end
-              end
-          else
-               if vim.o.background ~= "dark" then
-                  vim.o.background = "dark"
-              end
-          end
-      end))
-    '';
+        if vim.fn.executable("nu") == 1 then
+          vim.o.shell = "nu"
+        end
+      ''
+      +
+        lib.optionalString config.nixvim.themeWatcher
+          # lua
+          ''
+            -- Theme switching: follow /etc/current-theme, falling back to `nixvim.dark`
+            -- when the file is absent (e.g. darwin).
+            local default_background = "${if config.nixvim.dark then "dark" else "light"}"
+            local timer = vim.loop.new_timer()
+            timer:start(0, 5000, vim.schedule_wrap(function()
+                local background = default_background
+                local f = io.open("/etc/current-theme", "r")
+                if f then
+                    local content = f:read("*all")
+                    f:close()
+                    content = content:gsub("%s+", "")
+                    background = content == "light" and "light" or "dark"
+                end
+                if vim.o.background ~= background then
+                    vim.o.background = background
+                end
+            end))
+          '';
 
     clipboard = {
       providers.wl-copy.enable = pkgs.stdenv.isLinux;
