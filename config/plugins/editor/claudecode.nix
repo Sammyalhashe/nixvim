@@ -4,13 +4,13 @@
     pkgs.vimPlugins.snacks-nvim
     (pkgs.vimUtils.buildVimPlugin {
       pname = "claudecode.nvim";
-      version = "unstable-2025-01-31";
-      doCheck = false;
+      version = "v0.3.0";
+      doCheck = true;
       src = pkgs.fetchFromGitHub {
         owner = "coder";
         repo = "claudecode.nvim";
-        rev = "432121f0f5b9bda041030d1e9e83b7ba3a93dd8f";
-        sha256 = "0px4ppw9mlackb4ljp1cy56xm0m0p75z1bz6kg6wrbxcji941j5g";
+        tag = "v0.3.0";
+        hash = "sha256-sOBY2y/buInf+SxLwz6uYlUouDULwebY/nmDlbFbGa8=";
       };
     })
   ];
