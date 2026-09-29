@@ -43,6 +43,7 @@
     ./plugins/editor/claudecode.nix
     ./plugins/editor/codecompanion.nix
     ./plugins/editor/mcphub.nix
+    ./plugins/editor/md-table-tidy.nix
     ./plugins/editor/navic.nix
     ./plugins/editor/nvim-ufo.nix
 
@@ -60,7 +61,6 @@
     # Git
     ./plugins/git/jiejie-nvim.nix
     ./plugins/git/lazygit.nix
-    # ./plugins/git/lazygit.nix
     ./plugins/git/gitsigns.nix
     ./plugins/git/fugitive.nix
     ./plugins/git/lazyjui.nix
@@ -72,7 +72,6 @@
 
     # Utils
     ./plugins/utils/extra_plugins.nix
-    ./plugins/utils/markdown-preview.nix
     ./plugins/utils/markview.nix
     ./plugins/utils/mini.nix
     ./plugins/utils/obsidian.nix
