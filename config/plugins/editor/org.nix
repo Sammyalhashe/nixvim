@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+let
+  dir = config.nixvim.orgDirectory;
+in
 {
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
@@ -16,9 +19,9 @@
 
   extraConfigLua = ''
     require("org").setup({
-      org_directory = "~/org",
-      agenda_files = { "~/org/**/*.org" },
-      default_notes_file = "~/org/refile.org",
+      org_directory = "${dir}",
+      agenda_files = { "${dir}/**/*.org" },
+      default_notes_file = "${dir}/refile.org",
     })
   '';
 }
