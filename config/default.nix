@@ -46,6 +46,7 @@
     ./plugins/editor/md-table-tidy.nix
     ./plugins/editor/navic.nix
     ./plugins/editor/nvim-ufo.nix
+    ./plugins/editor/org.nix
 
     # UI plugins
     ./plugins/ui/bufferline.nix
