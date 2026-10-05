@@ -16,6 +16,12 @@ _: {
             return ""
           end
 
+          -- org.nvim folds org buffers itself (TAB cycling). UFO would replace
+          -- that with indent folds and re-close them on every edit.
+          if filetype == "org" then
+            return ""
+          end
+
           -- Main provider chain: Try treesitter, fall back to indent
           return { "treesitter", "indent" }
         end
