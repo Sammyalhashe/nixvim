@@ -1,151 +1,55 @@
-name: Update Flake and Validate Build
+name: Update Flake
 
 on:
   schedule:
     - cron: "30 00 * * 1"
   workflow_dispatch: # Allow manual triggering
 
-# Set default permissions as read only
 permissions: read-all
 
 jobs:
-  update-flake:
+  # Run `nix flake update` and open (or refresh) a PR if anything changed.
+  update:
     runs-on: ubuntu-latest
     permissions:
-      # Only need contents write to update the flake lock file
       contents: write
+      pull-requests: write
     outputs:
-      update_available: ${{ steps.check_updates.outputs.update_available }}
-    
+      pr: ${{ steps.update.outputs.pull-request-number }}
     steps:
-      - name: Repository Checkout
-        uses: actions/checkout@v4
-
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v18
-
-      - name: Check for Updates
-        id: check_updates
-        run: |
-          # Create a temporary copy of flake.lock
-          cp flake.lock flake.lock.backup
-          
-          # Try to update flake.lock
-          nix flake update
-          
-          # Check if there are differences
-          if ! cmp -s flake.lock flake.lock.backup; then
-            echo "update_available=true" >> "$GITHUB_OUTPUT"
-            # Restore original flake.lock
-            mv flake.lock.backup flake.lock
-          else
-            echo "update_available=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Update flake.lock
-        if: steps.check_updates.outputs.update_available == 'true'
-        uses: DeterminateSystems/update-flake-lock@v27
+      - uses: actions/checkout@v7
+      - uses: DeterminateSystems/nix-installer-action@v23
+      - id: update
+        uses: DeterminateSystems/update-flake-lock@v29
         with:
-          nix-options: --debug --log-format raw
-          token: ${{ secrets.FLAKE_TOKEN }}
           pr-title: "deps: update flake.lock"
-          pr-labels: |
-            dependencies
-            automated
+          commit-msg: "[flake] nix flake update"
 
-  build-and-check:
-    needs: update-flake
-    permissions:
-      # Needed for checking out code
-      contents: read
-      # Needed for creating issues
-      issues: write
+  # PRs opened with GITHUB_TOKEN don't trigger ci.yml, so validate here.
+  check:
+    needs: update
+    if: needs.update.outputs.pr != ''
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-      fail-fast: false # Continue with other jobs even if one fails
-    
+      fail-fast: false
     runs-on: ${{ matrix.os }}
-    
     steps:
-      - name: Repository Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: update_flake_lock_action
+      - uses: DeterminateSystems/nix-installer-action@v23
+      - run: nix flake check -L
 
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v18
-
-      - name: Build and Test Configuration
-        id: build
-        continue-on-error: true # Continue to next steps even if build fails
-        run: |
-          set +e  # Don't exit immediately on error
-          # Run the build and capture output
-          OUTPUT=$(nix build .# 2>&1)
-          BUILD_EXIT_CODE=$?
-          echo "build_output<<EOF" >> $GITHUB_ENV
-          echo "$OUTPUT" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-          
-          # Check if build succeeded
-          if [ $BUILD_EXIT_CODE -eq 0 ]; then
-            echo "build_status=success" >> $GITHUB_ENV
-          else
-            echo "build_status=failure" >> $GITHUB_ENV
-            # Ensure the error is visible in the logs
-            echo "::error::Build failed with exit code $BUILD_EXIT_CODE"
-            echo "$OUTPUT"
-          fi
-
-      - name: Create Issue on Build Failure
-        if: env.build_status == 'failure'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const os = '${{ matrix.os }}';
-            const buildOutput = process.env.build_output;
-            const isUpdate = '${{ needs.update-flake.outputs.update_available }}' === 'true';
-            
-            // Extract warnings and errors from build output
-            const warnings = buildOutput.match(/evaluation warning:[^\n]+/g) || [];
-            const errors = buildOutput.match(/error:[^\n]+/g) || [];
-            
-            // Create a summary section
-            const summary = [
-              warnings.length > 0 ? `${warnings.length} evaluation warnings` : '',
-              errors.length > 0 ? `${errors.length} errors` : ''
-            ].filter(Boolean).join(' and ');
-            
-            // Get repository information from context
-            const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-            
-            await github.rest.issues.create({
-              owner,
-              repo,
-              title: `🔨 Build Failed on ${os}: ${summary}${isUpdate ? ' (Dependency Update)' : ''}`,
-              body: `Build failed during automated validation on ${os}${isUpdate ? ' while testing dependency updates.' : '.'}\n
-              ${isUpdate ? 'This failure occurred on the dependency update branch `deps/update-flake-lock`.' : 'This failure occurred on the main branch.'}\n
-              
-              ### Summary
-              ${summary}\n
-              
-              ${warnings.length > 0 ? `### Warnings\n\`\`\`\n${warnings.join('\n')}\n\`\`\`\n` : ''}
-              ${errors.length > 0 ? `### Errors\n\`\`\`\n${errors.join('\n')}\n\`\`\`\n` : ''}
-              
-              <details>
-              <summary>Build Output</summary>
-              
-              \`\`\`
-              ${buildOutput}
-              \`\`\`
-              </details>
-              
-              Please review the build output and fix any issues.`,
-              labels: [
-                'build-failure',
-                'bug',
-                ...(warnings.length > 0 ? ['has-warnings'] : []),
-                ...(errors.length > 0 ? ['has-errors'] : [])
-              ]
-            });
+  # Only reached when every check passed; a failure leaves the PR open.
+  merge:
+    needs: [update, check]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - run: gh pr merge "${{ needs.update.outputs.pr }}" --squash --delete-branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
