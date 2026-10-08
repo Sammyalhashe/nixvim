@@ -1,4 +1,16 @@
 {
+  # jj runs `nvim -c "DiffEditor ..."` with no file args, so startup.nvim's
+  # VimEnter hook (argc() == 0) would draw the dashboard over hunk.nvim's
+  # file-tree window. Skip it when nvim is launched as a diff/merge editor.
+  extraConfigLuaPre = ''
+    for _, arg in ipairs(vim.v.argv) do
+      if arg:match("^DiffEditor ") or arg:match("^MergeEditor ") then
+        vim.g.startup_disable_on_startup = true
+        break
+      end
+    end
+  '';
+
   plugins.startup = {
     enable = true;
 
