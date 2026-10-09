@@ -48,6 +48,7 @@
     ./plugins/editor/navic.nix
     ./plugins/editor/nvim-ufo.nix
     ./plugins/editor/org.nix
+    ./plugins/editor/assembly.nix
 
     # UI plugins
     ./plugins/ui/bufferline.nix
