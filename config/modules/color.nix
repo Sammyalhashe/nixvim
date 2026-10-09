@@ -13,7 +13,7 @@ in
 
     themeWatcher = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = false;
       description = "Whether to poll /etc/current-theme and follow the system light/dark setting.";
     };
   };
