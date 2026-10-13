@@ -28,6 +28,8 @@
       ];
 
       flake = {
+        lib.banner = ./config/banner.txt;
+
         nixvimModules = {
           wslOption = import ./config/modules/wsl-option.nix;
           obsidianOption = import ./config/modules/obsidian-option.nix;
@@ -64,11 +66,28 @@
           workModule = mkModule true;
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
           nvimWork = nixvim'.makeNixvimWithModule workModule;
+          banner =
+            pkgs.runCommand "banner.txt"
+              { nativeBuildInputs = [ (pkgs.python3.withPackages (ps: [ ps.pyfiglet ])) ]; }
+              ''
+                python3 -c '
+                import pyfiglet
+                art = pyfiglet.figlet_format("SALH.XYZ", font="dos_rebel", width=200)
+                lines = [l.rstrip() for l in art.splitlines() if l.strip()]
+                width = max(map(len, lines))
+                print("\n".join(l.ljust(width) for l in lines))
+                ' > $out
+              '';
         in
         {
           checks = {
             default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
             work = nixvimLib.check.mkTestDerivationFromNixvimModule workModule;
+            banner = pkgs.runCommand "banner-up-to-date" { } ''
+              diff -u ${./config/banner.txt} ${banner} \
+                || { echo "Regenerate: nix build .#banner && cp result config/banner.txt"; exit 1; }
+              touch $out
+            '';
             pre-commit-check = pre-commit-hooks.lib.${system}.run {
               src = ./.;
               hooks = {
@@ -83,6 +102,7 @@
           packages = {
             default = nvim;
             work = nvimWork;
+            inherit banner;
           };
 
           devShells = {
