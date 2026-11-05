@@ -39,7 +39,7 @@
       if _G._vcs_branch_updating then return end
       _G._vcs_branch_updating = true
       vim.system(
-        { "jj", "log", "-r", "@", "-T", "if(bookmarks, bookmarks, change_id.short())", "--no-graph" },
+        { "jj", "log", "-r", "@", "-T", "if(bookmarks, bookmarks, change_id.short())", "--no-graph", "--color=never" },
         { text = true },
         function(jj_result)
           if jj_result.code == 0 and jj_result.stdout and jj_result.stdout ~= "" then
