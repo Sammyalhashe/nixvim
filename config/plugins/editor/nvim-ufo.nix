@@ -22,8 +22,22 @@ _: {
             return ""
           end
 
-          -- Main provider chain: Try treesitter, fall back to indent
-          return { "treesitter", "indent" }
+          -- LSP first: only it reports fold kinds (comment, imports, region).
+          -- A provider-selector table allows two providers, so chain all three.
+          return function(buf)
+            local ufo = require("ufo")
+            local function fallback_to(provider)
+              return function(err)
+                if type(err) == "string" and err:match("UfoFallbackException") then
+                  return ufo.getFolds(buf, provider)
+                end
+                return require("promise").reject(err)
+              end
+            end
+            return ufo.getFolds(buf, "lsp")
+              :catch(fallback_to("treesitter"))
+              :catch(fallback_to("indent"))
+          end
         end
       '';
     };
@@ -52,8 +66,8 @@ _: {
     {
       mode = "n";
       key = "zr";
-      action.__raw = "require('ufo').openFoldsExceptKinds";
-      options.desc = "Ufo: Open folds except kinds";
+      action.__raw = "function() require('ufo').openFoldsExceptKinds({ 'comment', 'imports' }) end";
+      options.desc = "Ufo: Open all folds but comments and imports";
     }
     {
       mode = "n";
