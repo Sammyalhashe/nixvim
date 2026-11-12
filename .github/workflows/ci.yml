@@ -17,3 +17,21 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - run: nix build .#default
+      - run: nix build .#work
+
+  # Tells nixosConfig to bump its nixvim input; skipped until the token secret exists.
+  notify-nixosconfig:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.NIXOSCONFIG_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "NIXOSCONFIG_DISPATCH_TOKEN not set; skipping."
+            exit 0
+          fi
+          gh api repos/Sammyalhashe/nixosConfig/dispatches \
+            -f event_type=nixvim-updated \
+            -f "client_payload[sha]=${{ github.sha }}"
